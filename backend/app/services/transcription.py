@@ -25,11 +25,15 @@ def get_whisper_model():
     
     if _whisper_model is None:
         try:
-            import whisper
+            from faster_whisper import WhisperModel
             
-            logger.info(f"Loading Whisper model: {settings.whisper_model}")
-            _whisper_model = whisper.load_model(settings.whisper_model)
-            logger.info("Whisper model loaded successfully")
+            logger.info(f"Loading Faster-Whisper model: {settings.whisper_model}")
+            _whisper_model = WhisperModel(
+                settings.whisper_model,
+                device=settings.whisper_device,
+                compute_type=settings.whisper_compute_type
+            )
+            logger.info("Faster-Whisper model loaded successfully")
         except Exception as e:
             logger.error(f"Failed to load Whisper model: {e}")
             raise RuntimeError(f"Failed to load Whisper model: {e}")
@@ -39,7 +43,7 @@ def get_whisper_model():
 
 def transcribe_audio(file_path: str) -> TranscriptionResult:
     """
-    Transcribe an audio file using OpenAI Whisper.
+    Transcribe an audio file using Faster-Whisper.
     
     Args:
         file_path: Path to the audio file
@@ -62,29 +66,32 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
         
         logger.info(f"Transcribing audio: {file_path}")
         
-        # Perform transcription
-        result = model.transcribe(
+        # Perform transcription with faster-whisper
+        segments_generator, info = model.transcribe(
             str(audio_path),
-            verbose=False
+            vad_filter=True,
+            vad_parameters=dict(min_silence_duration_ms=500)
         )
         
         # Process segments
         segments: List[TranscriptionSegment] = []
+        full_text_parts = []
         
-        for segment in result.get("segments", []):
+        for segment in segments_generator:
             segments.append(TranscriptionSegment(
-                start=segment["start"],
-                end=segment["end"],
-                text=segment["text"].strip()
+                start=segment.start,
+                end=segment.end,
+                text=segment.text.strip()
             ))
+            full_text_parts.append(segment.text.strip())
         
-        full_text = result.get("text", "").strip()
+        full_text = " ".join(full_text_parts)
         
         # Calculate duration from last segment
         duration = segments[-1].end if segments else 0.0
         
         # Get detected language
-        language = result.get("language", None)
+        language = info.language if hasattr(info, 'language') else None
         
         logger.info(f"Transcription complete. Duration: {duration:.1f}s, Segments: {len(segments)}")
         
