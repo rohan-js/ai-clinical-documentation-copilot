@@ -5,7 +5,6 @@ gunicorn==21.2.0
 python-multipart==0.0.6
 
 # AI/ML - Using versions with prebuilt wheels
-faster-whisper==1.0.0
 groq==0.4.2
 chromadb==0.4.22
 sentence-transformers==2.2.2

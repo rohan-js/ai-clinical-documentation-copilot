@@ -1,6 +1,6 @@
 """
-Audio transcription service using OpenAI Whisper.
-Provides local audio transcription without requiring an API.
+Audio transcription service using Groq's Whisper API.
+Cloud-based transcription without local dependencies.
 """
 
 import logging
@@ -12,38 +12,10 @@ from app.models.schemas import TranscriptionResult, TranscriptionSegment
 
 logger = logging.getLogger(__name__)
 
-# Global model instance (lazy loaded)
-_whisper_model = None
-
-
-def get_whisper_model():
-    """
-    Get or initialize the Whisper model.
-    Uses lazy loading to avoid loading the model on import.
-    """
-    global _whisper_model
-    
-    if _whisper_model is None:
-        try:
-            from faster_whisper import WhisperModel
-            
-            logger.info(f"Loading Faster-Whisper model: {settings.whisper_model}")
-            _whisper_model = WhisperModel(
-                settings.whisper_model,
-                device=settings.whisper_device,
-                compute_type=settings.whisper_compute_type
-            )
-            logger.info("Faster-Whisper model loaded successfully")
-        except Exception as e:
-            logger.error(f"Failed to load Whisper model: {e}")
-            raise RuntimeError(f"Failed to load Whisper model: {e}")
-    
-    return _whisper_model
-
 
 def transcribe_audio(file_path: str) -> TranscriptionResult:
     """
-    Transcribe an audio file using Faster-Whisper.
+    Transcribe an audio file using Groq's Whisper API.
     
     Args:
         file_path: Path to the audio file
@@ -52,6 +24,8 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
         TranscriptionResult with text and segments
     """
     try:
+        from groq import Groq
+        
         # Validate file exists
         audio_path = Path(file_path)
         if not audio_path.exists():
@@ -61,37 +35,37 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
                 error=f"Audio file not found: {file_path}"
             )
         
-        # Get the model
-        model = get_whisper_model()
+        logger.info(f"Transcribing audio via Groq API: {file_path}")
         
-        logger.info(f"Transcribing audio: {file_path}")
+        # Initialize Groq client
+        client = Groq(api_key=settings.groq_api_key)
         
-        # Perform transcription with faster-whisper
-        segments_generator, info = model.transcribe(
-            str(audio_path),
-            vad_filter=True,
-            vad_parameters=dict(min_silence_duration_ms=500)
-        )
+        # Open and transcribe the audio file
+        with open(audio_path, "rb") as audio_file:
+            transcription = client.audio.transcriptions.create(
+                file=(audio_path.name, audio_file.read()),
+                model="whisper-large-v3",
+                response_format="verbose_json",
+            )
         
-        # Process segments
+        # Extract text
+        full_text = transcription.text.strip() if hasattr(transcription, 'text') else ""
+        
+        # Process segments if available
         segments: List[TranscriptionSegment] = []
-        full_text_parts = []
+        if hasattr(transcription, 'segments') and transcription.segments:
+            for segment in transcription.segments:
+                segments.append(TranscriptionSegment(
+                    start=segment.get('start', 0.0),
+                    end=segment.get('end', 0.0),
+                    text=segment.get('text', '').strip()
+                ))
         
-        for segment in segments_generator:
-            segments.append(TranscriptionSegment(
-                start=segment.start,
-                end=segment.end,
-                text=segment.text.strip()
-            ))
-            full_text_parts.append(segment.text.strip())
-        
-        full_text = " ".join(full_text_parts)
-        
-        # Calculate duration from last segment
+        # Calculate duration
         duration = segments[-1].end if segments else 0.0
         
-        # Get detected language
-        language = info.language if hasattr(info, 'language') else None
+        # Get language
+        language = transcription.language if hasattr(transcription, 'language') else None
         
         logger.info(f"Transcription complete. Duration: {duration:.1f}s, Segments: {len(segments)}")
         
