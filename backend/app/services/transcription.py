@@ -29,6 +29,7 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
         # Validate file exists
         audio_path = Path(file_path)
         if not audio_path.exists():
+            logger.error(f"Audio file not found: {file_path}")
             return TranscriptionResult(
                 success=False,
                 text="",
@@ -36,6 +37,7 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
             )
         
         logger.info(f"Transcribing audio via Groq API: {file_path}")
+        logger.info(f"File size: {audio_path.stat().st_size} bytes")
         
         # Initialize Groq client
         client = Groq(api_key=settings.groq_api_key)
@@ -43,31 +45,40 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
         # Open and transcribe the audio file
         with open(audio_path, "rb") as audio_file:
             transcription = client.audio.transcriptions.create(
-                file=(audio_path.name, audio_file.read()),
+                file=(audio_path.name, audio_file),
                 model="whisper-large-v3",
-                response_format="verbose_json",
             )
         
-        # Extract text
-        full_text = transcription.text.strip() if hasattr(transcription, 'text') else ""
+        logger.info(f"Transcription response: {transcription}")
+        
+        # Extract text - handle both string and object response
+        if isinstance(transcription, str):
+            full_text = transcription.strip()
+        elif hasattr(transcription, 'text'):
+            full_text = transcription.text.strip() if transcription.text else ""
+        else:
+            full_text = str(transcription).strip()
+        
+        logger.info(f"Extracted text length: {len(full_text)}")
         
         # Process segments if available
         segments: List[TranscriptionSegment] = []
         if hasattr(transcription, 'segments') and transcription.segments:
             for segment in transcription.segments:
+                seg_dict = segment if isinstance(segment, dict) else vars(segment)
                 segments.append(TranscriptionSegment(
-                    start=segment.get('start', 0.0),
-                    end=segment.get('end', 0.0),
-                    text=segment.get('text', '').strip()
+                    start=seg_dict.get('start', 0.0),
+                    end=seg_dict.get('end', 0.0),
+                    text=seg_dict.get('text', '').strip()
                 ))
         
         # Calculate duration
         duration = segments[-1].end if segments else 0.0
         
         # Get language
-        language = transcription.language if hasattr(transcription, 'language') else None
+        language = getattr(transcription, 'language', None)
         
-        logger.info(f"Transcription complete. Duration: {duration:.1f}s, Segments: {len(segments)}")
+        logger.info(f"Transcription complete. Duration: {duration:.1f}s, Segments: {len(segments)}, Text: {full_text[:100]}...")
         
         return TranscriptionResult(
             success=True,
@@ -78,7 +89,7 @@ def transcribe_audio(file_path: str) -> TranscriptionResult:
         )
         
     except Exception as e:
-        logger.error(f"Transcription failed: {e}")
+        logger.error(f"Transcription failed: {e}", exc_info=True)
         return TranscriptionResult(
             success=False,
             text="",
