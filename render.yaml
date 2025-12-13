@@ -1,0 +1,22 @@
+# https://render.com/docs/yaml-spec
+# Render Blueprint for AI Clinical Documentation Copilot Backend
+
+services:
+  - type: web
+    name: clinical-copilot-api
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false  # You'll set this manually in dashboard
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - key: WHISPER_MODEL
+        value: tiny  # Using tiny for free tier memory constraints
+    healthCheckPath: /health
+    autoDeploy: true

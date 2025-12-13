@@ -1,0 +1,76 @@
+Patient Visit Notes - Audiology Clinic
+Date: December 12, 2024
+Provider: Dr. Sarah Mitchell, AuD
+
+PATIENT INFORMATION:
+Name: John Smith
+Age: 67 years old
+Chief Complaint: Progressive hearing difficulty, especially in noisy environments
+
+HISTORY OF PRESENT ILLNESS:
+Mr. Smith presents today reporting gradual hearing loss over the past 3-4 years. He notes increased difficulty understanding conversations in restaurants and at family gatherings. His wife reports he often asks others to repeat themselves and has been turning up the TV volume excessively. Patient denies any sudden hearing changes, ear pain, discharge, or vertigo. He reports occasional tinnitus, described as a high-pitched ringing, more noticeable at night.
+
+MEDICAL HISTORY:
+- Type 2 Diabetes Mellitus, controlled with metformin
+- Hypertension, on lisinopril
+- No history of ear infections or surgeries
+- Significant noise exposure: worked in manufacturing for 30 years
+- No known drug allergies
+
+CURRENT MEDICATIONS:
+- Metformin 500mg twice daily
+- Lisinopril 10mg daily
+- Aspirin 81mg daily
+
+FAMILY HISTORY:
+Father had hearing aids in his 70s. Mother had normal hearing. No family history of early-onset hearing loss.
+
+AUDIOLOGICAL EXAMINATION:
+Otoscopy: External auditory canals clear bilaterally. Tympanic membranes intact with normal landmarks.
+
+Pure Tone Audiometry:
+- Right ear: Mild to moderate sensorineural hearing loss, sloping configuration
+  - 250 Hz: 25 dB HL
+  - 500 Hz: 30 dB HL
+  - 1000 Hz: 35 dB HL
+  - 2000 Hz: 45 dB HL
+  - 4000 Hz: 55 dB HL
+  - 8000 Hz: 60 dB HL
+  
+- Left ear: Similar pattern, slightly worse at high frequencies
+  - 250 Hz: 25 dB HL
+  - 500 Hz: 35 dB HL
+  - 1000 Hz: 40 dB HL
+  - 2000 Hz: 50 dB HL
+  - 4000 Hz: 60 dB HL
+  - 8000 Hz: 65 dB HL
+
+Speech Audiometry:
+- Speech Recognition Threshold (SRT): Right 35 dB HL, Left 40 dB HL
+- Word Recognition Score (WRS): Right 84% at 70 dB HL, Left 80% at 75 dB HL
+
+Tympanometry: Type A bilaterally, indicating normal middle ear function.
+Acoustic Reflexes: Present bilaterally at expected levels.
+
+ASSESSMENT:
+1. Bilateral symmetric sensorineural hearing loss, mild to moderate degree, sloping high-frequency configuration
+2. Likely etiology: combination of presbycusis and noise-induced hearing loss
+3. Tinnitus, likely secondary to hearing loss
+4. Good candidate for amplification
+
+RECOMMENDATIONS:
+1. Hearing aids recommended - discussed RIC style devices with directional microphones and noise reduction features
+2. Demonstrated hearing aid options - patient interested in trying bilateral hearing aids
+3. Ordered impressions for custom earmolds
+4. Discussed realistic expectations for hearing aid benefit
+5. Recommended annual hearing monitoring
+6. Counseled on hearing protection for any future noise exposure
+7. Discussed tinnitus management strategies - may benefit from hearing aids with tinnitus masking feature
+
+PLAN:
+- Schedule hearing aid fitting appointment in 2 weeks
+- Provide information on communication strategies
+- Follow up in 1 month after fitting for adjustment
+- Annual audiometric evaluation recommended
+
+Patient expressed understanding of findings and is motivated to pursue hearing aid trial.

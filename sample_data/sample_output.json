@@ -1,0 +1,169 @@
+{
+    "session_id": "session_20241212_example",
+    "status": "completed",
+    "transcription": {
+        "success": true,
+        "text": "Good morning Mr. Smith, how are you doing today? I'm doing okay doctor, but I've been having more trouble hearing lately, especially when I'm at restaurants or family gatherings. My wife keeps telling me I have the TV too loud. I understand, and how long has this been going on? I'd say it's been getting worse over the past few years, maybe three or four years now. And do you have any ringing in your ears? Yes, actually, I notice a high-pitched ringing, especially at night when it's quiet. Any dizziness or ear pain? No, nothing like that. Okay, let me take a look at your ears and then we'll do some hearing tests.",
+        "segments": [
+            {
+                "start": 0.0,
+                "end": 5.2,
+                "text": "Good morning Mr. Smith, how are you doing today?"
+            },
+            {
+                "start": 5.5,
+                "end": 15.8,
+                "text": "I'm doing okay doctor, but I've been having more trouble hearing lately, especially when I'm at restaurants or family gatherings."
+            },
+            {
+                "start": 16.0,
+                "end": 20.5,
+                "text": "My wife keeps telling me I have the TV too loud."
+            },
+            {
+                "start": 21.0,
+                "end": 25.2,
+                "text": "I understand, and how long has this been going on?"
+            },
+            {
+                "start": 25.5,
+                "end": 32.0,
+                "text": "I'd say it's been getting worse over the past few years, maybe three or four years now."
+            },
+            {
+                "start": 32.5,
+                "end": 36.0,
+                "text": "And do you have any ringing in your ears?"
+            },
+            {
+                "start": 36.5,
+                "end": 42.0,
+                "text": "Yes, actually, I notice a high-pitched ringing, especially at night when it's quiet."
+            },
+            {
+                "start": 42.5,
+                "end": 45.0,
+                "text": "Any dizziness or ear pain?"
+            },
+            {
+                "start": 45.5,
+                "end": 47.0,
+                "text": "No, nothing like that."
+            },
+            {
+                "start": 47.5,
+                "end": 55.0,
+                "text": "Okay, let me take a look at your ears and then we'll do some hearing tests."
+            }
+        ],
+        "language": "en",
+        "duration": 55.0
+    },
+    "extracted_entities": {
+        "symptoms": [
+            "Difficulty hearing in noisy environments",
+            "Progressive hearing loss over 3-4 years",
+            "High-pitched tinnitus at night",
+            "Excessive TV volume"
+        ],
+        "patient_history": [
+            "Type 2 Diabetes Mellitus",
+            "Hypertension",
+            "30 years of occupational noise exposure in manufacturing",
+            "Father had hearing aids in his 70s"
+        ],
+        "clinician_observations": [
+            "External auditory canals clear bilaterally",
+            "Tympanic membranes intact with normal landmarks",
+            "Type A tympanometry bilaterally",
+            "Acoustic reflexes present at expected levels"
+        ],
+        "assessments": [
+            "Bilateral symmetric sensorineural hearing loss",
+            "Mild to moderate degree with sloping high-frequency configuration",
+            "Probable etiology: presbycusis and noise-induced hearing loss",
+            "Tinnitus secondary to hearing loss"
+        ],
+        "recommendations": [
+            "Bilateral hearing aids recommended",
+            "RIC style with directional microphones",
+            "Annual hearing monitoring",
+            "Hearing protection counseling",
+            "Tinnitus management with masking feature"
+        ],
+        "medications": [
+            "Metformin 500mg twice daily",
+            "Lisinopril 10mg daily",
+            "Aspirin 81mg daily"
+        ],
+        "vital_signs": {},
+        "audiological_findings": [
+            "Right ear PTA: 25-60 dB HL (250-8000 Hz)",
+            "Left ear PTA: 25-65 dB HL (250-8000 Hz)",
+            "SRT: Right 35 dB, Left 40 dB",
+            "WRS: Right 84%, Left 80%"
+        ]
+    },
+    "clinical_summary": {
+        "narrative": "Mr. John Smith, a 67-year-old male with a history of Type 2 Diabetes Mellitus and hypertension, presented to the audiology clinic reporting progressive hearing difficulty over the past 3-4 years. He describes particular difficulty understanding speech in noisy environments such as restaurants and family gatherings. He also reports occasional high-pitched tinnitus that is most noticeable at night. The patient has a significant history of occupational noise exposure, having worked in manufacturing for 30 years. Comprehensive audiological evaluation revealed bilateral symmetric sensorineural hearing loss of mild to moderate degree with a sloping high-frequency configuration. Speech recognition scores were good at 84% (right) and 80% (left). Tympanometry and acoustic reflexes were normal bilaterally, ruling out middle ear pathology. The clinical picture is consistent with a combination of age-related hearing loss (presbycusis) and noise-induced hearing loss. The patient was counseled on hearing aid options and expressed interest in pursuing amplification with bilateral RIC-style hearing aids featuring directional microphones and tinnitus masking capabilities.",
+        "soap_notes": {
+            "subjective": "67-year-old male presents with chief complaint of progressive hearing difficulty over 3-4 years, particularly in noisy environments. Reports wife notices excessive TV volume. Describes occasional high-pitched tinnitus, worse at night. Denies otalgia, otorrhea, or vertigo. History significant for 30 years occupational noise exposure in manufacturing.",
+            "objective": "Otoscopy: EAC clear bilaterally, TMs intact with normal landmarks. Audiometry: Bilateral symmetric SNHL, mild-moderate degree, sloping configuration. Right ear: 25-60 dB HL; Left ear: 25-65 dB HL. SRT: R-35 dB, L-40 dB. WRS: R-84%, L-80%. Tympanometry: Type A bilateral. Acoustic reflexes: Present at expected levels bilateral.",
+            "assessment": "1. Bilateral symmetric sensorineural hearing loss, mild to moderate, sloping high-frequency configuration\n2. Etiology: Mixed presbycusis and noise-induced hearing loss\n3. Tinnitus, likely secondary to cochlear damage\n4. Good hearing aid candidate based on audiometric profile and motivation",
+            "plan": "1. Bilateral RIC hearing aids with directional microphones and noise reduction\n2. Custom earmold impressions ordered\n3. Tinnitus masking feature to be activated\n4. Hearing aid fitting scheduled in 2 weeks\n5. 1-month post-fitting follow-up\n6. Annual audiometric monitoring recommended\n7. Hearing conservation education provided"
+        },
+        "tasks": [
+            {
+                "id": "task_1",
+                "title": "Schedule Hearing Aid Fitting",
+                "description": "Schedule bilateral RIC hearing aid fitting appointment within 2 weeks",
+                "priority": "high",
+                "category": "follow-up",
+                "due_date": "Within 2 weeks",
+                "completed": false
+            },
+            {
+                "id": "task_2",
+                "title": "Order Custom Earmolds",
+                "description": "Process earmold impressions and order custom molds for hearing aid fitting",
+                "priority": "high",
+                "category": "testing",
+                "due_date": "Before fitting appointment",
+                "completed": false
+            },
+            {
+                "id": "task_3",
+                "title": "Schedule 1-Month Follow-up",
+                "description": "Schedule post-fitting adjustment appointment for 1 month after initial fitting",
+                "priority": "medium",
+                "category": "follow-up",
+                "due_date": "1 month post-fitting",
+                "completed": false
+            },
+            {
+                "id": "task_4",
+                "title": "Provide Communication Strategies",
+                "description": "Prepare and provide patient education materials on communication strategies",
+                "priority": "medium",
+                "category": "education",
+                "due_date": "At fitting appointment",
+                "completed": false
+            },
+            {
+                "id": "task_5",
+                "title": "Annual Hearing Evaluation Reminder",
+                "description": "Set reminder for annual audiometric evaluation",
+                "priority": "low",
+                "category": "follow-up",
+                "due_date": "December 2025",
+                "completed": false
+            }
+        ],
+        "rag_context_used": [
+            "Degree of Hearing Loss Classification",
+            "Hearing Aid Candidacy",
+            "Tinnitus Assessment and Management"
+        ]
+    },
+    "processing_time_seconds": 12.5
+}
