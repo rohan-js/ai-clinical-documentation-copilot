@@ -2,6 +2,11 @@
 
 An AI-powered clinical documentation assistant that automatically generates structured medical documentation from audio recordings and clinical notes. Built with FastAPI, Next.js 14, and integrated with Groq's LLM API for intelligent extraction and summarization.
 
+## Live Demo
+
+- App: [https://ai-clinical-documentation-copilot.vercel.app/](https://ai-clinical-documentation-copilot.vercel.app/)
+- Note: the backend is hosted on Render's free tier, so it may sleep when idle and the first request can take a moment to wake up.
+
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.10+-green.svg)
 ![Next.js](https://img.shields.io/badge/next.js-14-black.svg)

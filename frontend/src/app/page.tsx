@@ -7,6 +7,8 @@ import NotesUploader from '@/components/NotesUploader';
 import ProcessingStatusComponent from '@/components/ProcessingStatus';
 import { useProcessing } from '@/hooks/useProcessing';
 
+const LIVE_DEMO_URL = 'https://ai-clinical-documentation-copilot.vercel.app/';
+
 export default function UploadPage() {
     const router = useRouter();
     const {
@@ -53,6 +55,32 @@ export default function UploadPage() {
                 }}>
                     Upload audio recordings or clinical notes to automatically generate
                     structured medical documentation powered by AI.
+                </p>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '1.5rem',
+                    flexWrap: 'wrap',
+                    gap: '0.75rem'
+                }}>
+                    <a
+                        className="btn btn-primary btn-lg"
+                        href={LIVE_DEMO_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Open Live Demo
+                    </a>
+                </div>
+                <p style={{
+                    marginTop: '1rem',
+                    fontSize: '0.875rem',
+                    color: 'var(--text-muted)',
+                    maxWidth: '700px',
+                    marginLeft: 'auto',
+                    marginRight: 'auto'
+                }}>
+                    The backend is hosted on Render's free tier, so the first request may take a little longer while it wakes from sleep.
                 </p>
             </div>
 
